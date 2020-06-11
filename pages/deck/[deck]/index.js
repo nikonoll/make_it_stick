@@ -2,28 +2,38 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Header from '../../../components/header'
 import { Field, Formik, Form } from 'formik';
+import { PrismaClient } from '@prisma/client';
 
-const Deck = () => {
+const Deck = ({ cards }) => {
   const router = useRouter()
   const { deck } = router.query
 
   return (
     <>
-      <Header />
-      <h1>Deck: {deck}</h1>
-      <ul>
-        <li>
-          <Link href="/deck/[deck]/[card]" as={`/deck/${deck}/first-card`}>
-            <a>First card</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/deck/[deck]/[card]" as={`/deck/${deck}/second-card`}>
-            <a>Second card</a>
-          </Link>
-        </li>
-      </ul>
       <div className="container">
+        <Header />
+        <h1>Deck: {deck}</h1>
+        <ul>
+          <li>
+            <Link href="/deck/[deck]/[card]" as={`/deck/${deck}/first-card`}>
+              <a>First card</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/deck/[deck]/[card]" as={`/deck/${deck}/second-card`}>
+              <a>Second card</a>
+            </Link>
+          </li>
+        </ul>
+        <div>
+          {cards.map((card) => (
+            <div key={card.id}>
+              <p>Question: {card.question}</p>
+              <p>Answer: {card.answer}</p>
+              <p>Score: {card.score}</p>
+            </div>
+          ))}
+        </div>
         <Formik
           initialValues={{
             question: '',
@@ -48,7 +58,7 @@ const Deck = () => {
             </label>
             <label>
               Enter the Score
-              <Field name="score" type="int"></Field>
+              <Field name="score" type="number"></Field>
             </label>
             <button type="submit">Submit</button>
           </Form>
@@ -59,3 +69,9 @@ const Deck = () => {
 }
 
 export default Deck
+
+export const getServerSideProps = async () => {
+  const prisma = new PrismaClient();
+  const cards = await prisma.card.findMany();
+  return { props: { cards } };
+};

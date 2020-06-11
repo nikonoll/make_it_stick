@@ -1,8 +1,11 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { PrismaClient } from '@prisma/client';
 
-export default function getCards(req, res) {
-    if(req.method !== 'GET'){
-        res.status(500).json({message: 'only accepts GET requests'})
+const prisma = new PrismaClient();
+
+export default async function (req, res) {
+    if(req.method === 'POST'){
+        const { body } = req;
+        const card = await prisma.card.create({ data: JSON.parse(body)});
+        res.json(card);
     }
-    res.json({hello: req.query.deck, method: req.method, message: 'getCards'})
 }

@@ -1,8 +1,8 @@
-import { NextApiRequest, NextApiResponse } from "next";
+const { prisma } = require('../../generated/prisma-client');
 
-export default function getAllDecks(req, res) {
-    if(req.method !== 'GET'){
-        res.status(500).json({message: 'only accepts GET requests'})
-    }
-    res.json({hello: 'world', method: req.method})
+export default async function getAllDecks(req, res) {
+    if(req.method === 'GET'){
+        const decks = await prisma.decks();
+        res.json(decks)
+    }  
 }

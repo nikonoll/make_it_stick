@@ -1,6 +1,7 @@
 import Head from 'next/head'
+import Link from 'next/link'
 
-export default function Home() {
+const Home = props => {
   return (
     <div className="container">
       <Head>
@@ -18,31 +19,14 @@ export default function Home() {
         </p>
 
         <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Africas recent history &rarr;</h3>
-            <p>Learn about history and fascinating culture of the big continent.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Renaissance &rarr;</h3>
-            <p>Learn about the epoche that everybody has heard of.</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Wine &rarr;</h3>
-            <p>Discover and learn how wine is made and its history.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Cheese &rarr;</h3>
-            <p> Discover and learn how cheese is made and its history.</p>
-          </a>
+          {props.decks.map(deck => (
+            <Link href="/deck/[id]" as={`/deck/${deck.id}`}>
+            <a className="card">
+              <h3>{deck.name} &rarr;</h3>
+              <p>{deck.description}</p>
+            </a>
+            </Link>
+          ))}
         </div>
       </main>
 
@@ -178,4 +162,11 @@ export default function Home() {
       `}</style>
     </div>
   )
+}
+export default Home
+
+export const getServerSideProps = async () => {
+  const res = await fetch('http://localhost:3000/api/decks')
+  const decks = await res.json();
+  return { props: { decks }}
 }

@@ -3,27 +3,36 @@ import Link from 'next/link'
 import Header from '../../../components/header'
 import { Field, Formik, Form } from 'formik';
 
-const Deck = () => {
+const Deck = props => {
   const router = useRouter()
   const { deck } = router.query
 
   return (
     <>
-      <div className="container">
+      <h1>All existing decks</h1>
+      <ul>
+        {props.decks.map(deck => (
+            <div key={deck.id} className="deck">
+              <li deck={deck}>{deck.name}</li> <li/>
+            </div>
+          ))}
+        </ul>
+       <div className="container">
         <Header />
-        <h1>Deck: {deck}</h1>
+        <h1>Deck: {deck} number </h1>
         <ul>
           <li>
-            <Link href="/deck/[deck]/[card]" as={`/deck/${deck}/first-card`}>
-              <a>First card</a>
+            <Link href="/deck/[deck]" as={`/deck/${deck}`}>
+              <a>First deck</a>
             </Link>
           </li>
           <li>
-            <Link href="/deck/[deck]/[card]" as={`/deck/${deck}/second-card`}>
-              <a>Second card</a>
+            <Link href="/deck/[deck]" as={`/deck/${deck}`}>
+              <a>Second deck</a>
             </Link>
           </li>
         </ul>
+ 
 
         <Formik
           initialValues={{
@@ -55,3 +64,9 @@ const Deck = () => {
 }
 
 export default Deck
+
+export const getServerSideProps = async () => {
+  const res = await fetch('http://localhost:3000/api/decks')
+  const decks = await res.json();
+  return { props: { decks }}
+}

@@ -2,9 +2,8 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Header from '../../../components/header'
 import { Field, Formik, Form } from 'formik';
-import { PrismaClient } from '@prisma/client';
 
-const Deck = ({ cards }) => {
+const Deck = () => {
   const router = useRouter()
   const { deck } = router.query
 
@@ -25,20 +24,11 @@ const Deck = ({ cards }) => {
             </Link>
           </li>
         </ul>
-        <div>
-          {cards.map((card) => (
-            <div key={card.id}>
-              <p>Question: {card.question}</p>
-              <p>Answer: {card.answer}</p>
-              <p>Score: {card.score}</p>
-            </div>
-          ))}
-        </div>
+
         <Formik
           initialValues={{
             question: '',
             answer: '',
-            score: 0,
           }}
           onSubmit={(values) => {
             fetch('http://localhost:3000/api/cards', {
@@ -56,10 +46,6 @@ const Deck = ({ cards }) => {
               Enter the Answer
               <Field name="answer" type="text"></Field>
             </label>
-            <label>
-              Enter the Score
-              <Field name="score" type="number"></Field>
-            </label>
             <button type="submit">Submit</button>
           </Form>
         </Formik>
@@ -69,9 +55,3 @@ const Deck = ({ cards }) => {
 }
 
 export default Deck
-
-export const getServerSideProps = async () => {
-  const prisma = new PrismaClient();
-  const cards = await prisma.card.findMany();
-  return { props: { cards } };
-};

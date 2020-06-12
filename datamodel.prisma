@@ -1,0 +1,18 @@
+type User {
+  id: ID! @id
+  email: String @unique
+  name: String!
+}
+
+type Card {
+  id: ID! @id
+  question: String!
+  answer: String!
+}
+
+type Deck {
+  id: ID! @id
+  name: String!
+  description: String!
+  cards: [Card!]!
+}

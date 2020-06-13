@@ -350,6 +350,7 @@ input DeckWhereInput {
 
 input DeckWhereUniqueInput {
   id: ID
+  name: String
 }
 
 scalar Long

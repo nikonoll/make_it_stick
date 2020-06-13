@@ -11,7 +11,7 @@ const Home = props => {
 
       <main>
         <h1 className="title">
-          Welcome to <a href="https://nextjs.org">MakeItStick!</a>
+          Welcome to <a href="/">MakeItStick!</a>
         </h1>
 
         <p className="description">

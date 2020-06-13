@@ -12,7 +12,7 @@ type Card {
 
 type Deck {
   id: ID! @id
-  name: String!
+  name: String! @unique
   description: String!
   cards: [Card!]!
 }

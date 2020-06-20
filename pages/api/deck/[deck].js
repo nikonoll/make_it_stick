@@ -9,9 +9,11 @@ export default async function getDeck(req, res) {
     switch (method) {
         case 'GET':
             //return something here
-            const data = await prisma.decks({
-                where: { id: deck },
-            });
+            //const dataOLD = await prisma.decks({
+            //    where: { id: deck },
+            //});
+            const data = await prisma.deck({id: deck});
+
 
             console.log(data);
             res.status(200).json(data)

@@ -27,8 +27,8 @@ export default function DeckWrapper() {
     <div className="container">
 
 <p>{query.deck}</p>
-      <h1>{ data[0].name } </h1>
-      <p>{ data[0].description }</p>
+      <h1>{ data.name } </h1>
+      <p>{ data.description }</p>
 
       <p>lalall</p>
     </div>

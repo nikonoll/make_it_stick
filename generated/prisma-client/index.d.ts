@@ -205,159 +205,20 @@ export type UserOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface CardUpdateInput {
-  question?: Maybe<String>;
-  answer?: Maybe<String>;
+export interface DeckUpdateOneRequiredWithoutCardsInput {
+  create?: Maybe<DeckCreateWithoutCardsInput>;
+  update?: Maybe<DeckUpdateWithoutCardsDataInput>;
+  upsert?: Maybe<DeckUpsertWithoutCardsInput>;
+  connect?: Maybe<DeckWhereUniqueInput>;
 }
 
 export type CardWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface CardUpdateManyWithWhereNestedInput {
-  where: CardScalarWhereInput;
-  data: CardUpdateManyDataInput;
-}
-
-export interface DeckCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  description: String;
-  cards?: Maybe<CardCreateManyInput>;
-}
-
-export interface UserWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  email?: Maybe<String>;
-  email_not?: Maybe<String>;
-  email_in?: Maybe<String[] | String>;
-  email_not_in?: Maybe<String[] | String>;
-  email_lt?: Maybe<String>;
-  email_lte?: Maybe<String>;
-  email_gt?: Maybe<String>;
-  email_gte?: Maybe<String>;
-  email_contains?: Maybe<String>;
-  email_not_contains?: Maybe<String>;
-  email_starts_with?: Maybe<String>;
-  email_not_starts_with?: Maybe<String>;
-  email_ends_with?: Maybe<String>;
-  email_not_ends_with?: Maybe<String>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  AND?: Maybe<UserWhereInput[] | UserWhereInput>;
-  OR?: Maybe<UserWhereInput[] | UserWhereInput>;
-  NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
-}
-
 export interface CardUpdateManyMutationInput {
   question?: Maybe<String>;
   answer?: Maybe<String>;
-}
-
-export interface UserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-}
-
-export interface CardSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<CardWhereInput>;
-  AND?: Maybe<CardSubscriptionWhereInput[] | CardSubscriptionWhereInput>;
-  OR?: Maybe<CardSubscriptionWhereInput[] | CardSubscriptionWhereInput>;
-  NOT?: Maybe<CardSubscriptionWhereInput[] | CardSubscriptionWhereInput>;
-}
-
-export interface CardScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  question?: Maybe<String>;
-  question_not?: Maybe<String>;
-  question_in?: Maybe<String[] | String>;
-  question_not_in?: Maybe<String[] | String>;
-  question_lt?: Maybe<String>;
-  question_lte?: Maybe<String>;
-  question_gt?: Maybe<String>;
-  question_gte?: Maybe<String>;
-  question_contains?: Maybe<String>;
-  question_not_contains?: Maybe<String>;
-  question_starts_with?: Maybe<String>;
-  question_not_starts_with?: Maybe<String>;
-  question_ends_with?: Maybe<String>;
-  question_not_ends_with?: Maybe<String>;
-  answer?: Maybe<String>;
-  answer_not?: Maybe<String>;
-  answer_in?: Maybe<String[] | String>;
-  answer_not_in?: Maybe<String[] | String>;
-  answer_lt?: Maybe<String>;
-  answer_lte?: Maybe<String>;
-  answer_gt?: Maybe<String>;
-  answer_gte?: Maybe<String>;
-  answer_contains?: Maybe<String>;
-  answer_not_contains?: Maybe<String>;
-  answer_starts_with?: Maybe<String>;
-  answer_not_starts_with?: Maybe<String>;
-  answer_ends_with?: Maybe<String>;
-  answer_not_ends_with?: Maybe<String>;
-  AND?: Maybe<CardScalarWhereInput[] | CardScalarWhereInput>;
-  OR?: Maybe<CardScalarWhereInput[] | CardScalarWhereInput>;
-  NOT?: Maybe<CardScalarWhereInput[] | CardScalarWhereInput>;
-}
-
-export type DeckWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  name?: Maybe<String>;
-}>;
-
-export interface CardUpsertWithWhereUniqueNestedInput {
-  where: CardWhereUniqueInput;
-  update: CardUpdateDataInput;
-  create: CardCreateInput;
 }
 
 export interface DeckWhereInput {
@@ -411,20 +272,19 @@ export interface DeckWhereInput {
   NOT?: Maybe<DeckWhereInput[] | DeckWhereInput>;
 }
 
-export interface CardUpdateDataInput {
+export interface CardUpdateWithoutDeckDataInput {
   question?: Maybe<String>;
   answer?: Maybe<String>;
 }
 
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  email?: Maybe<String>;
-  name: String;
+export interface CardCreateManyWithoutDeckInput {
+  create?: Maybe<CardCreateWithoutDeckInput[] | CardCreateWithoutDeckInput>;
+  connect?: Maybe<CardWhereUniqueInput[] | CardWhereUniqueInput>;
 }
 
-export interface CardUpdateManyDataInput {
-  question?: Maybe<String>;
-  answer?: Maybe<String>;
+export interface CardUpdateWithWhereUniqueWithoutDeckInput {
+  where: CardWhereUniqueInput;
+  data: CardUpdateWithoutDeckDataInput;
 }
 
 export interface DeckSubscriptionWhereInput {
@@ -438,10 +298,145 @@ export interface DeckSubscriptionWhereInput {
   NOT?: Maybe<DeckSubscriptionWhereInput[] | DeckSubscriptionWhereInput>;
 }
 
+export type DeckWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  name?: Maybe<String>;
+}>;
+
+export interface DeckCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  description: String;
+  cards?: Maybe<CardCreateManyWithoutDeckInput>;
+}
+
 export interface CardCreateInput {
   id?: Maybe<ID_Input>;
   question: String;
   answer: String;
+  deck: DeckCreateOneWithoutCardsInput;
+}
+
+export interface UserUpdateManyMutationInput {
+  email?: Maybe<String>;
+  name?: Maybe<String>;
+}
+
+export interface DeckCreateOneWithoutCardsInput {
+  create?: Maybe<DeckCreateWithoutCardsInput>;
+  connect?: Maybe<DeckWhereUniqueInput>;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  email?: Maybe<String>;
+  name: String;
+}
+
+export interface DeckCreateWithoutCardsInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  description: String;
+}
+
+export interface CardUpdateManyDataInput {
+  question?: Maybe<String>;
+  answer?: Maybe<String>;
+}
+
+export interface CardUpdateInput {
+  question?: Maybe<String>;
+  answer?: Maybe<String>;
+  deck?: Maybe<DeckUpdateOneRequiredWithoutCardsInput>;
+}
+
+export interface CardUpdateManyWithWhereNestedInput {
+  where: CardScalarWhereInput;
+  data: CardUpdateManyDataInput;
+}
+
+export interface CardUpdateManyWithoutDeckInput {
+  create?: Maybe<CardCreateWithoutDeckInput[] | CardCreateWithoutDeckInput>;
+  delete?: Maybe<CardWhereUniqueInput[] | CardWhereUniqueInput>;
+  connect?: Maybe<CardWhereUniqueInput[] | CardWhereUniqueInput>;
+  set?: Maybe<CardWhereUniqueInput[] | CardWhereUniqueInput>;
+  disconnect?: Maybe<CardWhereUniqueInput[] | CardWhereUniqueInput>;
+  update?: Maybe<
+    | CardUpdateWithWhereUniqueWithoutDeckInput[]
+    | CardUpdateWithWhereUniqueWithoutDeckInput
+  >;
+  upsert?: Maybe<
+    | CardUpsertWithWhereUniqueWithoutDeckInput[]
+    | CardUpsertWithWhereUniqueWithoutDeckInput
+  >;
+  deleteMany?: Maybe<CardScalarWhereInput[] | CardScalarWhereInput>;
+  updateMany?: Maybe<
+    CardUpdateManyWithWhereNestedInput[] | CardUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface CardScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  question?: Maybe<String>;
+  question_not?: Maybe<String>;
+  question_in?: Maybe<String[] | String>;
+  question_not_in?: Maybe<String[] | String>;
+  question_lt?: Maybe<String>;
+  question_lte?: Maybe<String>;
+  question_gt?: Maybe<String>;
+  question_gte?: Maybe<String>;
+  question_contains?: Maybe<String>;
+  question_not_contains?: Maybe<String>;
+  question_starts_with?: Maybe<String>;
+  question_not_starts_with?: Maybe<String>;
+  question_ends_with?: Maybe<String>;
+  question_not_ends_with?: Maybe<String>;
+  answer?: Maybe<String>;
+  answer_not?: Maybe<String>;
+  answer_in?: Maybe<String[] | String>;
+  answer_not_in?: Maybe<String[] | String>;
+  answer_lt?: Maybe<String>;
+  answer_lte?: Maybe<String>;
+  answer_gt?: Maybe<String>;
+  answer_gte?: Maybe<String>;
+  answer_contains?: Maybe<String>;
+  answer_not_contains?: Maybe<String>;
+  answer_starts_with?: Maybe<String>;
+  answer_not_starts_with?: Maybe<String>;
+  answer_ends_with?: Maybe<String>;
+  answer_not_ends_with?: Maybe<String>;
+  AND?: Maybe<CardScalarWhereInput[] | CardScalarWhereInput>;
+  OR?: Maybe<CardScalarWhereInput[] | CardScalarWhereInput>;
+  NOT?: Maybe<CardScalarWhereInput[] | CardScalarWhereInput>;
+}
+
+export interface DeckUpdateWithoutCardsDataInput {
+  name?: Maybe<String>;
+  description?: Maybe<String>;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserWhereInput>;
+  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
 }
 
 export interface UserUpdateInput {
@@ -449,40 +444,16 @@ export interface UserUpdateInput {
   name?: Maybe<String>;
 }
 
-export interface CardCreateManyInput {
-  create?: Maybe<CardCreateInput[] | CardCreateInput>;
-  connect?: Maybe<CardWhereUniqueInput[] | CardWhereUniqueInput>;
+export interface CardCreateWithoutDeckInput {
+  id?: Maybe<ID_Input>;
+  question: String;
+  answer: String;
 }
 
 export interface DeckUpdateInput {
   name?: Maybe<String>;
   description?: Maybe<String>;
-  cards?: Maybe<CardUpdateManyInput>;
-}
-
-export interface CardUpdateManyInput {
-  create?: Maybe<CardCreateInput[] | CardCreateInput>;
-  update?: Maybe<
-    | CardUpdateWithWhereUniqueNestedInput[]
-    | CardUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    | CardUpsertWithWhereUniqueNestedInput[]
-    | CardUpsertWithWhereUniqueNestedInput
-  >;
-  delete?: Maybe<CardWhereUniqueInput[] | CardWhereUniqueInput>;
-  connect?: Maybe<CardWhereUniqueInput[] | CardWhereUniqueInput>;
-  set?: Maybe<CardWhereUniqueInput[] | CardWhereUniqueInput>;
-  disconnect?: Maybe<CardWhereUniqueInput[] | CardWhereUniqueInput>;
-  deleteMany?: Maybe<CardScalarWhereInput[] | CardScalarWhereInput>;
-  updateMany?: Maybe<
-    CardUpdateManyWithWhereNestedInput[] | CardUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface CardUpdateWithWhereUniqueNestedInput {
-  where: CardWhereUniqueInput;
-  data: CardUpdateDataInput;
+  cards?: Maybe<CardUpdateManyWithoutDeckInput>;
 }
 
 export interface CardWhereInput {
@@ -528,14 +499,85 @@ export interface CardWhereInput {
   answer_not_starts_with?: Maybe<String>;
   answer_ends_with?: Maybe<String>;
   answer_not_ends_with?: Maybe<String>;
+  deck?: Maybe<DeckWhereInput>;
   AND?: Maybe<CardWhereInput[] | CardWhereInput>;
   OR?: Maybe<CardWhereInput[] | CardWhereInput>;
   NOT?: Maybe<CardWhereInput[] | CardWhereInput>;
 }
 
-export interface UserUpdateManyMutationInput {
-  email?: Maybe<String>;
+export interface DeckUpsertWithoutCardsInput {
+  update: DeckUpdateWithoutCardsDataInput;
+  create: DeckCreateWithoutCardsInput;
+}
+
+export interface DeckUpdateManyMutationInput {
   name?: Maybe<String>;
+  description?: Maybe<String>;
+}
+
+export interface CardSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<CardWhereInput>;
+  AND?: Maybe<CardSubscriptionWhereInput[] | CardSubscriptionWhereInput>;
+  OR?: Maybe<CardSubscriptionWhereInput[] | CardSubscriptionWhereInput>;
+  NOT?: Maybe<CardSubscriptionWhereInput[] | CardSubscriptionWhereInput>;
+}
+
+export interface CardUpsertWithWhereUniqueWithoutDeckInput {
+  where: CardWhereUniqueInput;
+  update: CardUpdateWithoutDeckDataInput;
+  create: CardCreateWithoutDeckInput;
+}
+
+export interface UserWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  email?: Maybe<String>;
+  email_not?: Maybe<String>;
+  email_in?: Maybe<String[] | String>;
+  email_not_in?: Maybe<String[] | String>;
+  email_lt?: Maybe<String>;
+  email_lte?: Maybe<String>;
+  email_gt?: Maybe<String>;
+  email_gte?: Maybe<String>;
+  email_contains?: Maybe<String>;
+  email_not_contains?: Maybe<String>;
+  email_starts_with?: Maybe<String>;
+  email_not_starts_with?: Maybe<String>;
+  email_ends_with?: Maybe<String>;
+  email_not_ends_with?: Maybe<String>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  AND?: Maybe<UserWhereInput[] | UserWhereInput>;
+  OR?: Maybe<UserWhereInput[] | UserWhereInput>;
+  NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
 export type UserWhereUniqueInput = AtLeastOne<{
@@ -543,55 +585,24 @@ export type UserWhereUniqueInput = AtLeastOne<{
   email?: Maybe<String>;
 }>;
 
-export interface DeckUpdateManyMutationInput {
-  name?: Maybe<String>;
-  description?: Maybe<String>;
-}
-
 export interface NodeNode {
   id: ID_Output;
 }
 
-export interface DeckSubscriptionPayload {
-  mutation: MutationType;
-  node: Deck;
-  updatedFields: String[];
-  previousValues: DeckPreviousValues;
+export interface BatchPayload {
+  count: Long;
 }
 
-export interface DeckSubscriptionPayloadPromise
-  extends Promise<DeckSubscriptionPayload>,
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
     Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = DeckPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = DeckPreviousValuesPromise>() => T;
+  count: () => Promise<Long>;
 }
 
-export interface DeckSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<DeckSubscriptionPayload>>,
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = DeckSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = DeckPreviousValuesSubscription>() => T;
-}
-
-export interface DeckEdge {
-  node: Deck;
-  cursor: String;
-}
-
-export interface DeckEdgePromise extends Promise<DeckEdge>, Fragmentable {
-  node: <T = DeckPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface DeckEdgeSubscription
-  extends Promise<AsyncIterator<DeckEdge>>,
-    Fragmentable {
-  node: <T = DeckSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<AsyncIterator<Long>>;
 }
 
 export interface UserPreviousValues {
@@ -635,6 +646,31 @@ export interface DeckConnectionSubscription
   pageInfo: <T = PageInfoSubscription>() => T;
   edges: <T = Promise<AsyncIterator<DeckEdgeSubscription>>>() => T;
   aggregate: <T = AggregateDeckSubscription>() => T;
+}
+
+export interface DeckSubscriptionPayload {
+  mutation: MutationType;
+  node: Deck;
+  updatedFields: String[];
+  previousValues: DeckPreviousValues;
+}
+
+export interface DeckSubscriptionPayloadPromise
+  extends Promise<DeckSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = DeckPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = DeckPreviousValuesPromise>() => T;
+}
+
+export interface DeckSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<DeckSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = DeckSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = DeckPreviousValuesSubscription>() => T;
 }
 
 export interface CardConnection {
@@ -713,29 +749,6 @@ export interface DeckNullablePromise
   }) => T;
 }
 
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
 export interface AggregateCard {
   count: Int;
 }
@@ -806,45 +819,54 @@ export interface UserConnectionSubscription
   aggregate: <T = AggregateUserSubscription>() => T;
 }
 
-export interface AggregateDeck {
-  count: Int;
+export interface User {
+  id: ID_Output;
+  email?: String;
+  name: String;
 }
 
-export interface AggregateDeckPromise
-  extends Promise<AggregateDeck>,
+export interface UserPromise extends Promise<User>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  email: () => Promise<String>;
+  name: () => Promise<String>;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
     Fragmentable {
-  count: () => Promise<Int>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  email: () => Promise<AsyncIterator<String>>;
+  name: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateDeckSubscription
-  extends Promise<AsyncIterator<AggregateDeck>>,
+export interface UserNullablePromise
+  extends Promise<User | null>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  id: () => Promise<ID_Output>;
+  email: () => Promise<String>;
+  name: () => Promise<String>;
 }
 
-export interface UserSubscriptionPayload {
-  mutation: MutationType;
-  node: User;
-  updatedFields: String[];
-  previousValues: UserPreviousValues;
+export interface DeckPreviousValues {
+  id: ID_Output;
+  name: String;
+  description: String;
 }
 
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
+export interface DeckPreviousValuesPromise
+  extends Promise<DeckPreviousValues>,
     Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = UserPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValuesPromise>() => T;
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
 }
 
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+export interface DeckPreviousValuesSubscription
+  extends Promise<AsyncIterator<DeckPreviousValues>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
 }
 
 export interface CardPreviousValues {
@@ -904,6 +926,7 @@ export interface CardPromise extends Promise<Card>, Fragmentable {
   id: () => Promise<ID_Output>;
   question: () => Promise<String>;
   answer: () => Promise<String>;
+  deck: <T = DeckPromise>() => T;
 }
 
 export interface CardSubscription
@@ -912,6 +935,7 @@ export interface CardSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   question: () => Promise<AsyncIterator<String>>;
   answer: () => Promise<AsyncIterator<String>>;
+  deck: <T = DeckSubscription>() => T;
 }
 
 export interface CardNullablePromise
@@ -920,50 +944,46 @@ export interface CardNullablePromise
   id: () => Promise<ID_Output>;
   question: () => Promise<String>;
   answer: () => Promise<String>;
+  deck: <T = DeckPromise>() => T;
 }
 
-export interface BatchPayload {
-  count: Long;
+export interface AggregateDeck {
+  count: Int;
 }
 
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
+export interface AggregateDeckPromise
+  extends Promise<AggregateDeck>,
     Fragmentable {
-  count: () => Promise<Long>;
+  count: () => Promise<Int>;
 }
 
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
+export interface AggregateDeckSubscription
+  extends Promise<AsyncIterator<AggregateDeck>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface User {
-  id: ID_Output;
-  email?: String;
-  name: String;
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
 }
 
-export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  name: () => Promise<String>;
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
 }
 
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  email: () => Promise<AsyncIterator<String>>;
-  name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserNullablePromise
-  extends Promise<User | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  name: () => Promise<String>;
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserEdge {
@@ -983,39 +1003,60 @@ export interface UserEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface DeckPreviousValues {
-  id: ID_Output;
-  name: String;
-  description: String;
+export interface UserSubscriptionPayload {
+  mutation: MutationType;
+  node: User;
+  updatedFields: String[];
+  previousValues: UserPreviousValues;
 }
 
-export interface DeckPreviousValuesPromise
-  extends Promise<DeckPreviousValues>,
+export interface UserSubscriptionPayloadPromise
+  extends Promise<UserSubscriptionPayload>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  description: () => Promise<String>;
+  mutation: () => Promise<MutationType>;
+  node: <T = UserPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserPreviousValuesPromise>() => T;
 }
 
-export interface DeckPreviousValuesSubscription
-  extends Promise<AsyncIterator<DeckPreviousValues>>,
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = UserSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
-export type Long = string;
+export interface DeckEdge {
+  node: Deck;
+  cursor: String;
+}
+
+export interface DeckEdgePromise extends Promise<DeckEdge>, Fragmentable {
+  node: <T = DeckPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface DeckEdgeSubscription
+  extends Promise<AsyncIterator<DeckEdge>>,
+    Fragmentable {
+  node: <T = DeckSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
 export type Int = number;
 
+export type Long = string;
+
 /*
-The `Boolean` scalar type represents `true` or `false`.
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
-export type Boolean = boolean;
+export type ID_Input = string | number;
+export type ID_Output = string;
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
@@ -1023,10 +1064,9 @@ The `String` scalar type represents textual data, represented as UTF-8 character
 export type String = string;
 
 /*
-The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+The `Boolean` scalar type represents `true` or `false`.
 */
-export type ID_Input = string | number;
-export type ID_Output = string;
+export type Boolean = boolean;
 
 /**
  * Model Metadata
@@ -1038,11 +1078,11 @@ export const models: Model[] = [
     embedded: false
   },
   {
-    name: "Card",
+    name: "Deck",
     embedded: false
   },
   {
-    name: "Deck",
+    name: "Card",
     embedded: false
   }
 ];

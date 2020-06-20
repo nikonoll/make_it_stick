@@ -23,6 +23,7 @@ type Card {
   id: ID!
   question: String!
   answer: String!
+  deck: Deck!
 }
 
 type CardConnection {
@@ -35,11 +36,18 @@ input CardCreateInput {
   id: ID
   question: String!
   answer: String!
+  deck: DeckCreateOneWithoutCardsInput!
 }
 
-input CardCreateManyInput {
-  create: [CardCreateInput!]
+input CardCreateManyWithoutDeckInput {
+  create: [CardCreateWithoutDeckInput!]
   connect: [CardWhereUniqueInput!]
+}
+
+input CardCreateWithoutDeckInput {
+  id: ID
+  question: String!
+  answer: String!
 }
 
 type CardEdge {
@@ -128,14 +136,10 @@ input CardSubscriptionWhereInput {
   NOT: [CardSubscriptionWhereInput!]
 }
 
-input CardUpdateDataInput {
-  question: String
-  answer: String
-}
-
 input CardUpdateInput {
   question: String
   answer: String
+  deck: DeckUpdateOneRequiredWithoutCardsInput
 }
 
 input CardUpdateManyDataInput {
@@ -143,21 +147,21 @@ input CardUpdateManyDataInput {
   answer: String
 }
 
-input CardUpdateManyInput {
-  create: [CardCreateInput!]
-  update: [CardUpdateWithWhereUniqueNestedInput!]
-  upsert: [CardUpsertWithWhereUniqueNestedInput!]
+input CardUpdateManyMutationInput {
+  question: String
+  answer: String
+}
+
+input CardUpdateManyWithoutDeckInput {
+  create: [CardCreateWithoutDeckInput!]
   delete: [CardWhereUniqueInput!]
   connect: [CardWhereUniqueInput!]
   set: [CardWhereUniqueInput!]
   disconnect: [CardWhereUniqueInput!]
+  update: [CardUpdateWithWhereUniqueWithoutDeckInput!]
+  upsert: [CardUpsertWithWhereUniqueWithoutDeckInput!]
   deleteMany: [CardScalarWhereInput!]
   updateMany: [CardUpdateManyWithWhereNestedInput!]
-}
-
-input CardUpdateManyMutationInput {
-  question: String
-  answer: String
 }
 
 input CardUpdateManyWithWhereNestedInput {
@@ -165,15 +169,20 @@ input CardUpdateManyWithWhereNestedInput {
   data: CardUpdateManyDataInput!
 }
 
-input CardUpdateWithWhereUniqueNestedInput {
-  where: CardWhereUniqueInput!
-  data: CardUpdateDataInput!
+input CardUpdateWithoutDeckDataInput {
+  question: String
+  answer: String
 }
 
-input CardUpsertWithWhereUniqueNestedInput {
+input CardUpdateWithWhereUniqueWithoutDeckInput {
   where: CardWhereUniqueInput!
-  update: CardUpdateDataInput!
-  create: CardCreateInput!
+  data: CardUpdateWithoutDeckDataInput!
+}
+
+input CardUpsertWithWhereUniqueWithoutDeckInput {
+  where: CardWhereUniqueInput!
+  update: CardUpdateWithoutDeckDataInput!
+  create: CardCreateWithoutDeckInput!
 }
 
 input CardWhereInput {
@@ -219,6 +228,7 @@ input CardWhereInput {
   answer_not_starts_with: String
   answer_ends_with: String
   answer_not_ends_with: String
+  deck: DeckWhereInput
   AND: [CardWhereInput!]
   OR: [CardWhereInput!]
   NOT: [CardWhereInput!]
@@ -245,7 +255,18 @@ input DeckCreateInput {
   id: ID
   name: String!
   description: String!
-  cards: CardCreateManyInput
+  cards: CardCreateManyWithoutDeckInput
+}
+
+input DeckCreateOneWithoutCardsInput {
+  create: DeckCreateWithoutCardsInput
+  connect: DeckWhereUniqueInput
+}
+
+input DeckCreateWithoutCardsInput {
+  id: ID
+  name: String!
+  description: String!
 }
 
 type DeckEdge {
@@ -289,12 +310,29 @@ input DeckSubscriptionWhereInput {
 input DeckUpdateInput {
   name: String
   description: String
-  cards: CardUpdateManyInput
+  cards: CardUpdateManyWithoutDeckInput
 }
 
 input DeckUpdateManyMutationInput {
   name: String
   description: String
+}
+
+input DeckUpdateOneRequiredWithoutCardsInput {
+  create: DeckCreateWithoutCardsInput
+  update: DeckUpdateWithoutCardsDataInput
+  upsert: DeckUpsertWithoutCardsInput
+  connect: DeckWhereUniqueInput
+}
+
+input DeckUpdateWithoutCardsDataInput {
+  name: String
+  description: String
+}
+
+input DeckUpsertWithoutCardsInput {
+  update: DeckUpdateWithoutCardsDataInput!
+  create: DeckCreateWithoutCardsInput!
 }
 
 input DeckWhereInput {

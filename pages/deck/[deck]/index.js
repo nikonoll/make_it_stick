@@ -1,50 +1,36 @@
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import Header from '../../../components/header'
-import { Field, Formik, Form } from 'formik';
-import Deck from '../../../components/deck';
+import { useRouter } from 'next/router';
+import React, { useState, useEffect } from 'react';
+import useSWR from 'swr';
 
-// TODO: Render deck meta info and all cards of a given deck id
-const DeckWrapper = () => {
-  const router = useRouter()
-  const { deck } = router.query
+const fetcher = async (url) => {
+  const res = await fetch(url)
+  const data = await res.json()
 
-  return (
-    <>
-
-       <div className="container">
-        <Header />
-        <h1>Deck: {deck} number </h1>
-        <p>Deck meta info to be fetched from backend and shown here</p>
-        <Deck deck={deck}/>
-        <h2>Add another card to the deck:</h2>
-        <Formik
-          initialValues={{
-            question: '',
-            answer: '',
-          }}
-          onSubmit={(values) => {
-            fetch('http://localhost:3000/api/cards', {
-              method: 'POST',
-              body: JSON.stringify({ ...values }),
-            });
-          }}
-        >
-          <Form>
-            <label>
-              Enter the question
-              <Field name="question" type="text"></Field>
-            </label>
-            <label>
-              Enter the Answer
-              <Field name="answer" type="text"></Field>
-            </label>
-            <button type="submit">Submit</button>
-          </Form>
-        </Formik>
-      </div>
-    </>
-  )
+  if (res.status !== 200) {
+    throw new Error(data.message)
+  }
+  return data
 }
 
-export default DeckWrapper
+// TODO: Render deck meta info and all cards of a given deck id
+export default function DeckWrapper() {
+  const { query } = useRouter()
+  const { data, error } = useSWR(
+    () => query.deck && `/api/deck/${query.deck}`,
+    fetcher
+  )
+
+  if (error) return <div>{error.message}</div>
+  if (!data) return <div>Loading...</div>
+
+  return (
+    <div className="container">
+
+<p>{query.deck}</p>
+      <h1>{ data[0].name } </h1>
+      <p>{ data[0].description }</p>
+
+      <p>lalall</p>
+    </div>
+  )
+}

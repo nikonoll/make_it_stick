@@ -4,15 +4,17 @@ type User {
   name: String!
 }
 
-type Card {
-  id: ID! @id
-  question: String!
-  answer: String!
-}
-
 type Deck {
   id: ID! @id
   name: String! @unique
   description: String!
   cards: [Card!]!
 }
+
+type Card {
+  id: ID! @id
+  question: String!
+  answer: String!
+  deck: Deck! @relation(link: INLINE)
+}
+

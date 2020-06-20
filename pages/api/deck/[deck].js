@@ -1,11 +1,24 @@
 const { prisma } = require('../../../generated/prisma-client');
 
 export default async function getDeck(req, res) {
-    const deck = req.query.id
-    if(req.method === 'GET'){
-        const data = await prisma.decks({
-            where: { id: deck },
-        });
-        res.json(data)
-    }  
+    const {
+        query: { deck },
+        method,
+      } = req
+
+    switch (method) {
+        case 'GET':
+            //return something here
+            const data = await prisma.decks({
+                where: { id: deck },
+            });
+
+            console.log(data);
+            res.status(200).json(data)
+            break
+            // case to post a new deck
+        default:
+            res.setHeader('Allow', ['GET', 'PUT'])
+            res.status(405).end(`Method ${method} Not Allowed`)
+    }
 }

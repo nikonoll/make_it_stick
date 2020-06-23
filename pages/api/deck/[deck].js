@@ -1,21 +1,24 @@
-const { prisma } = require('../../../generated/prisma-client');
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+// TODO: function to get your progress on the deck
+const cardCount = async (deckId) => {
+    const c = await prisma.card.findMany({ where: { deckid: deckId }})
+    return parseInt(c.length)
+}
 
 export default async function getDeck(req, res) {
     const {
         query: { deck },
         method,
       } = req
+      const deckId = parseInt(deck)
 
     switch (method) {
         case 'GET':
-            //return something here
-            //const dataOLD = await prisma.decks({
-            //    where: { id: deck },
-            //});
-            const data = await prisma.deck({id: deck});
-
-
-            console.log(data);
+            const data = await prisma.deck.findOne({where: { id: parseInt(deckId) }});
+            data["cardCount"] = await cardCount(deckId);
             res.status(200).json(data)
             break
             // case to post a new deck

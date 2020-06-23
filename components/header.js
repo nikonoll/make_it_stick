@@ -1,24 +1,44 @@
 import Link from 'next/link'
 
 const Header = () => (
-  <header>
-    <ul>
-      <li>
+  <header className="header">
+    <div>
+      <div className="linkbox">
         <Link href="/">
-          <a>Home</a>
+          <a className="headerlink">Home</a>
         </Link>
-      </li>
-      <li>
+      </div>
+      <div className="linkbox">
         <Link href="/deck/[deck]" as="/deck/first">
-          <a>First deck</a>
+          <a className="headerlink">First deck</a>
         </Link>
-      </li>
-      <li>
+      </div>
+      <div className="linkbox">
         <Link href="/deck/[deck]" as="/deck/second">
-          <a>Second dekc</a>
+          <a className="headerlink">Second dekc</a>
         </Link>
-      </li>
-    </ul>
+      </div>
+    </div>
+    <style jsx>{`
+
+    .header {
+      font-size: 24px;
+      text-decoration: none;
+      float: left;
+      margin-top: 30px;
+    }
+    .linkbox {
+      border: 3px solid black;
+      border-radius: 15%;
+      padding: 10px;
+      margin: 20px;
+    }
+    .headerlink {
+      color: black;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    `}</style>
   </header>
 )
 

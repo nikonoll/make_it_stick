@@ -1,9 +1,12 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Header from '../components/header';
 
 const Home = props => {
   return (
-    <div className="container">
+    <div>
+      <Header></Header>
+      <div className="container">
       <Head>
         <title>Make it stick</title>
         <link rel="icon" href="/favicon.ico" />
@@ -22,7 +25,7 @@ const Home = props => {
           {props.decks.map(deck => (
             <Link href="/deck/[id]" as={`/deck/${deck.id}`}>
             <a className="card">
-              <h3>{deck.name} &rarr;</h3>
+              <h3>{deck.title} &rarr;</h3>
               <p>{deck.description}</p>
             </a>
             </Link>
@@ -30,10 +33,10 @@ const Home = props => {
         </div>
       </main>
 
+</div>
       <footer>
   
       </footer>
-
       <style jsx>{`
         .container {
           min-height: 100vh;

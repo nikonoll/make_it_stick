@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import useSWR from 'swr';
+import Header from '../../../components/header';
 
 const fetcher = async (url) => {
   const res = await fetch(url)
@@ -25,12 +26,12 @@ export default function DeckWrapper() {
 
   return (
     <div className="container">
+      <Header></Header>
+      <h1>{data.title} </h1>
+      <p>{data.description}</p>
+      <style jsx>{`
 
-<p>{query.deck}</p>
-      <h1>{ data.name } </h1>
-      <p>{ data.description }</p>
-
-      <p>lalall</p>
+      `}</style>
     </div>
   )
 }

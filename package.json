@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@prisma/client": "^2.0.1",
@@ -16,6 +17,7 @@
     "swr": "^0.2.3"
   },
   "devDependencies": {
-    "@prisma/cli": "^2.0.1"
+    "@prisma/cli": "^2.0.1",
+    "cypress": "^4.9.0"
   }
 }

@@ -22,8 +22,8 @@ const nextCard = async (deckId) => {
         where: { 
             AND: [
                 { deckId: deckId },
-                { question:
-                    { contains: 'orange' }
+                { repScore:
+                    { gte: 0 }
                 },
             ]
         }

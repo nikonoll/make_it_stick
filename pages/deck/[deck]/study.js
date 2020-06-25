@@ -1,16 +1,7 @@
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import Header from '../../../components/header'
-
-const fetcher = async (url) => {
-    const res = await fetch(url)
-    const data = await res.json()
-  
-    if (res.status !== 200) {
-      throw new Error(data.message)
-    }
-    return data
-}
+import fetcher from '../../../helper/swr_fetcher'
 
 export default function StudyDeck(){
     const { query } = useRouter()

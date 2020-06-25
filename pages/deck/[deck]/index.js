@@ -1,20 +1,9 @@
 import { useRouter } from 'next/router';
-import React, { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import Header from '../../../components/header';
 import Link from 'next/link';
+import fetcher from '../../../helper/swr_fetcher'
 
-const fetcher = async (url) => {
-  const res = await fetch(url)
-  const data = await res.json()
-
-  if (res.status !== 200) {
-    throw new Error(data.message)
-  }
-  return data
-}
-
-// TODO: Render deck meta info and all cards of a given deck id
 function DeckWrapper() {
   const { query } = useRouter()
   const { data, error } = useSWR(

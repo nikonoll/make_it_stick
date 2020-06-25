@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import Header from '../../../components/header'
 import fetcher from '../../../helper/swr_fetcher'
+import LoadingCircle from '../../../components/loading_circle'
 
 export default function StudyDeck(){
     const { query } = useRouter()
@@ -11,7 +12,7 @@ export default function StudyDeck(){
     )
 
     if(error) return <div>{error.message}</div>
-    if(!data) return <div>Loading ...</div>
+    if(!data) return <div><LoadingCircle/></div>
 
     return (
         <div>

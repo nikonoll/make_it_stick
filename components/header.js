@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const Header = () => (
+const Header = ({ deckId }) => (
   <header className="header">
     <div>
       <div className="linkbox">
@@ -8,6 +8,8 @@ const Header = () => (
           <a className="headerlink">Home</a>
         </Link>
       </div>
+      <p>In deck {deckId}</p>
+      {/* if deck id is present here, fetch the progress for the header bar */}
     </div>
     <style jsx>{`
 

@@ -16,9 +16,6 @@ CREATE TABLE `User` (
   UNIQUE KEY `User.email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `User` (`email`, `id`, `name`) VALUES
-('dernikonoll@gmail.com',	1,	'Niko');
-
 
 
 DROP TABLE IF EXISTS `Deck`;
@@ -33,10 +30,6 @@ CREATE TABLE `Deck` (
   CONSTRAINT `Deck_ibfk_1` FOREIGN KEY (`authorId`) REFERENCES `User` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `Deck` (`authorId`, `description`, `id`, `published`, `title`) VALUES
-(1,	'A lot of things about cheese',	1,	0,	'Cheese Deck'),
-(1,	'A lot more questions about wine',	2,	0,	'Wine Deck');
-
 
 DROP TABLE IF EXISTS `Card`;
 CREATE TABLE `Card` (
@@ -49,9 +42,16 @@ CREATE TABLE `Card` (
   CONSTRAINT `Card_ibfk_1` FOREIGN KEY (`deckId`) REFERENCES `Deck` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `Card` (`answer`, `deckId`, `id`, `question`) VALUES
-('Mimolette',	1,	1,	'Which cheese is the most orange?'),
-('24 months',	1,	2,	'What is the oldest comté you should buy?'),
-('Barolo',	2,	3,	'Wine with the most tanines?');
+-- INSERT DATA 
 
--- 2020-06-23 20:24:15
+INSERT INTO `User` (`email`, `id`, `name`, `updatedAt`) VALUES
+('dernikonoll@gmail.com',	1,	'Niko', '2020-06-06 17:00:00');
+
+INSERT INTO `Deck` (`authorId`, `description`, `id`, `published`, `title`, `updatedAt`) VALUES
+(1,	'A lot of things about cheese',	1,	0,	'Cheese Deck', '2020-06-06 17:00:00'),
+(1,	'A lot more questions about wine',	2,	0,	'Wine Deck','2020-06-06 17:00:00');
+
+INSERT INTO `Card` (`answer`, `deckId`, `id`, `question`, `updatedAt`) VALUES
+('Mimolette',	1,	1,	'Which cheese is the most orange?', '2020-06-06 17:00:00'),
+('24 months',	1,	2,	'What is the oldest comté you should buy?', '2020-06-06 17:00:00'),
+('Barolo',	2,	3,	'Wine with the most tanines?', '2020-06-06 17:00:00');

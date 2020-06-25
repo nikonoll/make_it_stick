@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 
 // TODO: function to get your progress on the deck
 const cardCount = async (deckId) => {
-    const c = await prisma.card.findMany({ where: { deckid: deckId }})
+    const c = await prisma.card.findMany({ where: { deckId: deckId }})
     return parseInt(c.length)
 }
 

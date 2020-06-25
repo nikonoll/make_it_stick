@@ -1,0 +1,31 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Card",
+      "field": "deckId",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Card",
+      "field": "deckid"
+    },
+    {
+      "tag": "UpdateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Card",
+          "field": "Deck"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "newValue": "[deckId]"
+    }
+  ]
+}

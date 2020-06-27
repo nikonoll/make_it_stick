@@ -8,13 +8,13 @@ const Header = ({ deckId }) => (
           <a className="headerlink">Home</a>
         </Link>
       </div>
-      <p>In deck {deckId}</p>
+      <p>Studying deck {deckId}</p>
       {/* if deck id is present here, fetch the progress for the header bar */}
     </div>
     <style jsx>{`
 
     .header {
-      font-size: 24px;
+      font-size: 12px;
       text-decoration: none;
     }
     .linkbox {

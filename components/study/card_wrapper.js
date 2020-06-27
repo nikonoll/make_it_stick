@@ -4,7 +4,7 @@ import ActionBar from './action_bar'
 import React, { setState } from 'react';
 
 // be the wrapper component that holds state and renders function components answer, question, actionbar 
-class StudyWrapper extends React.Component {
+class CardWrapper extends React.Component {
     constructor(props) {
         super(props);
         this.state = props;
@@ -29,16 +29,15 @@ class StudyWrapper extends React.Component {
         <div>
             <Header deckId={this.state.deckId} />
             <Card question={this.state.question} answer={this.state.answer} flipped={this.state.flipped}/>
-            <ActionBar flipped={this.state.flipped} learned={this.state.learned} handleFlip={this.handleFlip} handleLearned={this.handleLearned} handleNext={this.handleNext}/>
+            <ActionBar deckId={this.state.deckId} flipped={this.state.flipped} learned={this.state.learned} handleFlip={this.handleFlip} handleLearned={this.handleLearned} handleNext={this.handleNext}/>
         </div>
         )
     }
 }
 
-StudyWrapper.defaultProps = {
+CardWrapper.defaultProps = {
     flipped: false,
     learned: "",
-    next: false,
 }
 
-export default StudyWrapper;
+export default CardWrapper;

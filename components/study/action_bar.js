@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import Link from 'next/link';
 
 class ActionBar extends React.Component {
     // can i go with functional component or do I need a class one?
@@ -23,7 +23,7 @@ class ActionBar extends React.Component {
 
     render() {
         if (this.props.learned !== "") {
-            return <div><button onClick={this.clickNext}>next card</button></div>
+            return <Link href={`/deck/${this.props.deckId}/study`}><button>next card</button></Link>
         }
         if (this.props.flipped) {
             return (

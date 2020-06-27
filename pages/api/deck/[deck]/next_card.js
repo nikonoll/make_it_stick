@@ -28,8 +28,9 @@ const nextCard = async (deckId) => {
             ]
         }
     })
-    console.log (c)
-    return c[0]
+    const length = c.length
+    const random = Math.floor(Math.random() * length)
+    return c[random]
 }
 
 export default async function getCardToStudy(req, res) {

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import fetcher from '../../../helper/swr_fetcher'
 import LoadingCircle from '../../../components/loading_circle'
-import StudyWrapper from '../../../components/study/study_wrapper'
+import CardWrapper from '../../../components/study/card_wrapper'
 
 
 export default function StudyDeck(props){
@@ -16,6 +16,6 @@ export default function StudyDeck(props){
     if(!data) return <div><LoadingCircle/></div>
 
     return (
-        <StudyWrapper deckId={data.deckId} question={data.question} answer={data.answer}/>
+        <CardWrapper deckId={data.deckId} question={data.question} answer={data.answer}/>
     )
 }

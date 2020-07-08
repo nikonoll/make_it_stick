@@ -17,7 +17,7 @@ CREATE TABLE `Deck` (
   `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `id` int NOT NULL AUTO_INCREMENT,
   `published` tinyint(1) NOT NULL DEFAULT '0',
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(192) COLLATE utf8mb4_unicode_ci NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime(3) NOT NULL,
   PRIMARY KEY (`id`),

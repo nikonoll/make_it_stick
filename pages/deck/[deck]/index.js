@@ -15,16 +15,13 @@ function DeckWrapper() {
   if (!data) return <div>Loading...</div>
 
   return (
-    <div className="container">
+    <div>
       <Header></Header>
-      <h1>{data.title} </h1>
-      <p>{data.description}</p>
-      <p>Includes {data.cardCount} cards.</p>
-      <p>Author:</p>
+      <h1 className="text-2xl text-gray-700 p-4">{data.title} </h1>
+      <p className="text-l p-4">{data.description}</p>
+      <p className="p-4">Includes {data.cardCount} cards. | Author: Alfred Admin </p>
       <Link href="/deck/[id]/study" as={`/deck/${data.id}/study`}>
-      <a>
-        <button>Start Learning</button>
-      </a>
+        <button className="m-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Start Learning</button>
       </Link>
       <style jsx>{`
 

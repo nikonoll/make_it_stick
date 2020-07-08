@@ -1,5 +1,8 @@
+import Header from './header';
+
 const LoadingCircle = () => (
 <div>
+    <Header></Header>
 <div className="wrapper">
     <div className="loader">
         <svg className="loading-animation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
@@ -7,7 +10,7 @@ const LoadingCircle = () => (
         </svg>
     </div>
     <div className="loading-message">
-        <p>Breathe, we are getting you more</p>
+        <p className="text-gray-700 p-4 text-xl font-bold">Breathe, we are getting you more</p>
     </div>
 </div>
 <style jsx>{`

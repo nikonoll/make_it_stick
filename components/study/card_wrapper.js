@@ -26,7 +26,7 @@ class CardWrapper extends React.Component {
 
     render() {
         return (
-        <div>
+        <div className="flex flex-col items-stretch min-h-screen">
             <Header deckId={this.state.deckId} />
             <Card question={this.state.question} answer={this.state.answer} flipped={this.state.flipped}/>
             <ActionBar deckId={this.state.deckId} flipped={this.state.flipped} learned={this.state.learned} handleFlip={this.handleFlip} handleLearned={this.handleLearned} handleNext={this.handleNext}/>

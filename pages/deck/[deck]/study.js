@@ -16,6 +16,8 @@ export default function StudyDeck(props){
     if(!data) return <div><LoadingCircle/></div>
 
     return (
-        <CardWrapper deckId={data.deckId} question={data.question} answer={data.answer}/>
+        <div className="">
+            <CardWrapper deckId={data.deckId} question={data.question} answer={data.answer} />
+        </div>
     )
 }

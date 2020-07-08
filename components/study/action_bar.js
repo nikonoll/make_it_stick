@@ -1,10 +1,6 @@
 import Link from 'next/link';
 
 class ActionBar extends React.Component {
-    // can i go with functional component or do I need a class one?
-    // use state in the wrapper
-    // have the wrapper hold state and decide which button to render. The button each gets a onChangehanderl passed in so it can update state of wrapper when clicked
-
     constructor(props) {
         super(props);
         this.clickFlip = this.clickFlip.bind(this);
@@ -27,15 +23,21 @@ class ActionBar extends React.Component {
         }
         if (this.props.flipped) {
             return (
-                <div>
-                    <p>How was that?</p>
-                    <button data-txt="easy" onClick={this.clickLearned}>easy</button>
-                    <button data-txt="ok" onClick={this.clickLearned}>ok</button>
-                    <button data-txt="hard" onClick={this.clickLearned}>hard</button>
+                <div className="flex-shrink-0 flex items-center justify-between flex-wrap bg-gray-200 p-3">
+                    <div className="">
+                        <p>How was that?</p>
+                        <button data-txt="easy" onClick={this.clickLearned}>easy</button>
+                        <button data-txt="ok" onClick={this.clickLearned}>ok</button>
+                        <button data-txt="hard" onClick={this.clickLearned}>hard</button>
+                    </div>
                 </div>
             )
         }
-        return <div><button onClick={this.clickFlip}>flip</button></div>
+        return <div className="flex-shrink-0 flex items-center justify-between flex-wrap bg-gray-200 p-3">
+            <div>
+            <button onClick={this.clickFlip}>flip</button>
+            </div>
+            </div>
     }
 }
 

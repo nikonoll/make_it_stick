@@ -6,163 +6,39 @@ const Home = props => {
   return (
     <div>
       <Header></Header>
-      <div className="container">
-      <Head>
-        <title>Make it stick</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <div className="">
+        <Head className="flex">
+          <title >Make it stick</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <main>
-        <h1 className="title">
-          Welcome to <a href="/">MakeItStick!</a>
-        </h1>
-
-        <p className="description">
-          Learn connected, learn better! Start by choosing a subject:
+        <main className="p-4 l:p-16 content-center flex-wrap">
+          <h1 className="text-xl font-bold text-gray-700">
+            Welcome to <span className="text-blue-500">MakeItStick!</span>
+          </h1>
+          <p className="text-base">
+            Learn connected, learn better! Start by choosing a subject:
         </p>
 
-        <div className="grid">
-          {props.decks.map(deck => (
-            <Link href="/deck/[id]" as={`/deck/${deck.id}`}>
-            <a className="card">
-              <h3>{deck.title} &rarr;</h3>
-              <p>{deck.description}</p>
-            </a>
-            </Link>
-          ))}
-        </div>
-      </main>
+          <div className="">
+            {props.decks.map(deck => (
+              <Link href="/deck/[id]" as={`/deck/${deck.id}`}>
+                <div className="l:w-1/3 max-w-sm rounded overflow-hidden shadow-lg p-4 m-4 l:p-16 l:m-16 cursor-pointer">
+                  <h3 className="font-bold text-xl mb-2">{deck.title} &rarr;</h3>
+                  <p className="text-base text-gray-700">{deck.description}</p>
+                  <div class="px-6 py-4">
+                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#food</span>
+                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#general</span>
+                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#fancy</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </main>
 
-</div>
-      <footer>
-  
-      </footer>
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
+      </div>
+      <footer></footer>
     </div>
   )
 }
@@ -171,5 +47,5 @@ export default Home
 export const getServerSideProps = async () => {
   const res = await fetch('http://localhost:3000/api/decks')
   const decks = await res.json();
-  return { props: { decks }}
+  return { props: { decks } }
 }

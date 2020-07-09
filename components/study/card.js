@@ -21,7 +21,7 @@ function Card({ question, answer, flipped }) {
 const Question = ({ question, flipped }) => (
     <div className={`${flipped ? "flipped flipped-front" : " "} front`}>
         <div className="inner">
-            <p>Question is {question}</p>
+            <p>{question}</p>
         </div>
     </div>
 )
@@ -29,7 +29,7 @@ const Question = ({ question, flipped }) => (
 const Answer = ({ answer, flipped }) => (
     <div className={`${flipped ? "flipped flipped-back" : " "} back`}>
         <div className="inner">
-            <p>Answer is {answer}</p>
+            <p>{answer}</p>
         </div>
     </div>
 

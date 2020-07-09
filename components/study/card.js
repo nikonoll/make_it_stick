@@ -1,29 +1,36 @@
 function Card({ question, answer, flipped }) {
-    if (flipped) {
-        return (
-            <div className="flex-grow">
-                <Question question={question}/>
-                <Answer answer={answer}/>
-            </div>
-        )
-    }
+    // if (flipped) {
+    //     return (
+    //         <div className="flex-grow container">
+    //             <Question question={question} />
+    //             <Answer answer={answer} />
+    //         </div>
+    //     )
+    // }
     return (
-        <div className="flex-grow">
-            <Question question={question} />
+        <div className="flex-grow m-4">
+            <div className="container">
+                <Question question={question} flipped={flipped}/>
+                <Answer answer={answer} flipped={flipped}/>
+            </div>
         </div>
     )
 
 }
 
-const Question = ({ question }) => (
-    <div>
-        <p>Question is {question}</p>
+const Question = ({ question, flipped }) => (
+    <div className={`${flipped ? "flipped flipped-front" : " "} front`}>
+        <div className="inner">
+            <p>Question is {question}</p>
+        </div>
     </div>
 )
 
-const Answer = ({ answer }) => (
-    <div>
-        <p>Answer is {answer}</p>
+const Answer = ({ answer, flipped }) => (
+    <div className={`${flipped ? "flipped flipped-back" : " "} back`}>
+        <div className="inner">
+            <p>Answer is {answer}</p>
+        </div>
     </div>
 
 )

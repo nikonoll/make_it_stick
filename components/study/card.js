@@ -1,12 +1,4 @@
 function Card({ question, answer, flipped }) {
-    // if (flipped) {
-    //     return (
-    //         <div className="flex-grow container">
-    //             <Question question={question} />
-    //             <Answer answer={answer} />
-    //         </div>
-    //     )
-    // }
     return (
         <div className="flex-grow m-4">
             <div className="container">

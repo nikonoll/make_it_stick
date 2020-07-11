@@ -17,7 +17,7 @@ export default function StudyDeck(props){
 
     return (
         <div className="">
-            <CardWrapper deckId={data.deckId} question={data.question} answer={data.answer} />
+            <CardWrapper deckId={data.deckId} question={data.question} answer={data.answer} repScore={data.repScore} cardId={data.id}/>
         </div>
     )
 }

@@ -1,27 +1,25 @@
 import { PrismaClient } from '@prisma/client'
 
+const prisma = new PrismaClient()
 // PRISMA DUBUG MODE 
-// const prisma = new PrismaClient()
-const prisma = new PrismaClient({
-    log: [
-      {
-        emit: 'event',
-        level: 'query',
-      },
-    ],
-  })
+// const prisma = new PrismaClient({
+//     log: [
+//       {
+//         emit: 'event',
+//         level: 'query',
+//       },
+//     ],
+//   })
   
-  prisma.on('query', e => {
-    e.query, console.log(e)
-  })
-//TODO function to get card with needed score
-// add score to db
-// make this AND condition look for the card with the lowest score?
+//   prisma.on('query', e => {
+//     e.query, console.log(e)
+//   })
+
 const nextCard = async (deckId) => {
     const c = await prisma.card.findMany({
         where: { 
             AND: [
-                { deckId: deckId },
+                { deckId: parseInt(deckId) },
                 { repScore:
                     { gte: 0 }
                 },

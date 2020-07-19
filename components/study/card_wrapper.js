@@ -24,7 +24,7 @@ class CardWrapper extends React.Component {
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ learned: learned })
+            body: JSON.stringify({ currResponse: learned })
         };
         fetch(`/api/card/${this.props.cardId}`, requestOptions)
             .then(response => response.json())

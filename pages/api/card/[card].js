@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import scoreDelta from '../../../helper/score_calc';
+import scoreHelper from '../../../helper/score_calc';
+import validate from '../../../helper/validations/validations';
 
 const prisma = new PrismaClient()
 
@@ -17,8 +18,12 @@ export default async function cardActions(req, res) {
             await handleGet(cardId, res);
             break
         case 'PUT':
-            const learned = req.body.learned;
-            await handleScoreUpdate(cardId, learned, res);
+            const currResponse = req.body.currResponse;
+            if (validate.cardResponse(currResponse) == false) { 
+                res.status(500).end("Gotta give me a valid response here: ok, easy or hard")
+                break
+            }
+            await handleScoreUpdate(cardId, currResponse, res);
             break
         default:
             res.setHeader('Allow', ['GET', 'PUT'])
@@ -33,16 +38,17 @@ async function handleGet(cardId, res){
     res.status(200).json(c)
 }
 
-async function handleScoreUpdate(cardId, learned, res){
+async function handleScoreUpdate(cardId, currResponse, res){
     const c = await prisma.card.findOne({
         where: { id: cardId }
     });
     const currentScore = c.repScore
-    const updatedScore = parseInt(currentScore + scoreDelta(learned))
+    const updatedScore = scoreHelper.newScore(currentScore, currResponse)
 
     const updateElement = await prisma.card.update({
         where: { id: cardId },
         data: { repScore: updatedScore },
     })
+    updateElement["oldScore"] = currentScore
     res.status(200).json(updateElement)
 }

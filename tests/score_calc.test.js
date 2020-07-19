@@ -35,6 +35,12 @@ describe('newScore', () => {
   test('does not return negative', () => {
     expect(scoreCalc.newScore(0, "hard")).toBe(0);
   });
+  test('returns decayed score', () => {
+    let d = new Date();
+    d.setDate(d.getDate() - 5);
+    expect(scoreCalc.newScore(50, "hard", d)).toBe(5);
+  });
+
 })
 
 describe('decaying function', () => {

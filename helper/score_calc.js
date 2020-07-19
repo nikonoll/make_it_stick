@@ -1,5 +1,5 @@
-function newScore(currScore, currResponse, lastResponse = "", lastLearned = Date.now()) {
-    let n = boundaries(currScore, scoreDelta(currResponse))
+function newScore(currScore, currResponse, lastLearned = new Date(), lastResponse = "") {
+    let n = boundaries(decay(currScore, lastLearned), scoreDelta(currResponse))
     return parseInt(n)
 }
 

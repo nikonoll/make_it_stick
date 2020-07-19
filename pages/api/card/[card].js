@@ -1,9 +1,8 @@
 import { PrismaClient } from '@prisma/client';
-import scoreChange from '../../../helper/score_calc';
+import scoreDelta from '../../../helper/score_calc';
 
 const prisma = new PrismaClient()
 
-//WIP: get one card by ID and more importantly update and create a card
 // UPDATE card repscore upon response of user (easy, ok, hard)
 export default async function cardActions(req, res) {
     const {
@@ -39,11 +38,11 @@ async function handleScoreUpdate(cardId, learned, res){
         where: { id: cardId }
     });
     const currentScore = c.repScore
-    const score = parseInt(currentScore + scoreChange(learned))
+    const updatedScore = parseInt(currentScore + scoreDelta(learned))
 
     const updateElement = await prisma.card.update({
         where: { id: cardId },
-        data: { repScore: score },
+        data: { repScore: updatedScore },
     })
     res.status(200).json(updateElement)
 }

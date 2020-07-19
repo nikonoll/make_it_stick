@@ -20,7 +20,7 @@ class CardWrapper extends React.Component {
     }
 
     handleLearned(learned) {
-        //this needs to update the card score via api
+        // Changes score for learned card depending on what the user selected for this card.
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },

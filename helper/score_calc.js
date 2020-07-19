@@ -1,4 +1,4 @@
-export default function scoreChange (learned) {
+function scoreDelta(learned) {
     var delta = 0
     switch(learned) {
         case "easy":
@@ -15,3 +15,5 @@ export default function scoreChange (learned) {
     }
     return delta
 }
+
+module.exports = scoreDelta;

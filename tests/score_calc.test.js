@@ -32,4 +32,20 @@ describe('newScore', () => {
   test('returns a new score', () => {
     expect(scoreCalc.newScore(50, "hard")).toBe(30);
   });
+  test('does not return negative', () => {
+    expect(scoreCalc.newScore(0, "hard")).toBe(0);
+  });
+})
+
+describe('decaying function', () => {
+  test('returns reduced score', () => {
+    let d = new Date();
+    d.setDate(d.getDate() - 5);
+    expect(scoreCalc.decay(20, d)).toBe(-5);
+  });
+  test('keeps same score if learned same day', () => {
+    let d = new Date();
+    d.setHours(d.getHours() - 5);
+    expect(scoreCalc.decay(0, d)).toBe(0);
+  });
 })

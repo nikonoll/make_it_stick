@@ -20,7 +20,7 @@ export default async function cardActions(req, res) {
         case 'PUT':
             const currResponse = req.body.currResponse;
             if (validate.cardResponse(currResponse) == false) { 
-                res.status(500).end("Gotta give me a valid response here: ok, easy or hard")
+                res.status(500).end(`invalid response ${currResponse}`)
                 break
             }
             await handleScoreUpdate(cardId, currResponse, res);
@@ -43,7 +43,7 @@ async function handleScoreUpdate(cardId, currResponse, res){
         where: { id: cardId }
     });
     const currentScore = c.repScore
-    const updatedScore = scoreHelper.newScore(currentScore, currResponse)
+    const updatedScore = scoreHelper.newScore(currentScore, currResponse, c.updatedAt)
 
     const updateElement = await prisma.card.update({
         where: { id: cardId },

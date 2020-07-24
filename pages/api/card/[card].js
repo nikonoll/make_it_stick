@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import scoreHelper from '../../../helper/score_calc';
-import validate from '../../../helper/validations/validations';
+import scoreHelper from '../../../lib/score_calc';
+import validate from '../../../lib/validations/validations';
 
 const prisma = new PrismaClient()
 

@@ -1,4 +1,4 @@
-const scoreCalc = require('../helper/score_calc')
+const scoreCalc = require('../lib/score_calc')
 
 describe('score delta', () => {
   test('gives back delta of +10 when answer ok', () => {

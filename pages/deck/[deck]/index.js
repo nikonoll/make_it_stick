@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import Header from '../../../components/header';
 import Link from 'next/link';
-import fetcher from '../../../helper/swr_fetcher'
+import fetcher from '../../../lib/swr_fetcher'
 
 function DeckWrapper() {
   const { query } = useRouter()

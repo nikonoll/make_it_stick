@@ -1,4 +1,4 @@
-const validate = require('../helper/validations/validations')
+const validate = require('../lib/validations/validations')
 
 describe('Validating card response', () => {
  test('can not be empty string', () => {

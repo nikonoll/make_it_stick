@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+const queue = require('../../../../lib/queue')
 
 const prisma = new PrismaClient()
 // PRISMA DUBUG MODE 
@@ -15,22 +16,6 @@ const prisma = new PrismaClient()
 //     e.query, console.log(e)
 //   })
 
-const nextCard = async (deckId) => {
-    const c = await prisma.card.findMany({
-        where: { 
-            AND: [
-                { deckId: parseInt(deckId) },
-                { repScore:
-                    { gte: 0 }
-                },
-            ]
-        }
-    })
-    const length = c.length
-    const random = Math.floor(Math.random() * length)
-    return c[random]
-}
-
 export default async function getCardToStudy(req, res) {
     const {
         query: { deck },
@@ -40,7 +25,7 @@ export default async function getCardToStudy(req, res) {
 
     switch (method) {
         case 'GET':
-            const data = await nextCard(deckId)
+            const data = await queue.nextCard(deckId)
             res.status(200).json(data)
             break
         default:
